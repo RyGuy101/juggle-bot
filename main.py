@@ -34,7 +34,7 @@ async def on_message(message):
         try:
             jugglinglab_url = message.content[len(command):].strip()
             if not validators.url(jugglinglab_url):
-                jugglinglab_url = "https://jugglinglab.org/anim?pattern=" + jugglinglab_url
+                jugglinglab_url = "https://jugglinglab.org/anim?" + jugglinglab_url
             img_finder = ImgFinder()
             img_finder.feed(requests.get(jugglinglab_url).text)
             await message.channel.send(file=discord.File(io.BytesIO(requests.get(img_finder.img_src).content), filename="anim.gif"))
